@@ -1,0 +1,29 @@
+Objetivo
+==================
+Criar um aplicativo que irá listar o cronograma de aulas do curso MPES
+
+Atividades
+==================
+
+* Criar view boas vindas!
+    * Fluxo pra tela de Membros
+    * Fluxo pra tela de Disciplinas
+* Criar view com lista de Disciplinas   
+* Criar view com lista de Membros
+    * Membros do tipo professor
+    * Membros do tipo Aluno
+    * Membros da coordenação
+* Criar view de detalhamento do Membro
+
+Entidades / Objetos de Valor
+=================
++ Membros (professor, aluno, coordenação)
++ Contato (email, telefone)
++ Disciplina (Data, Nome, Professor)  
+
+    
+Comportamentos
+=================
+1) View lista de membros
+    * Ao clicar num Professor exibir disciplina com o cronograma da mesma
+    

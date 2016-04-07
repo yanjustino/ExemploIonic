@@ -1,0 +1,22 @@
+<ion-navbar *navbar>
+    <ion-title>
+        Tab 3
+    </ion-title>
+</ion-navbar>
+
+<ion-content class="page3">
+    <ion-list>
+        <ion-list-header>
+            <h1>
+                <ion-icon name="book"></ion-icon>
+                Disciplinas
+            </h1>
+        </ion-list-header>
+        <ion-item *ngFor="#item of courses" (click)="gotToCoursePage(item.member.name)">
+            <h2>{{item.title}}</h2>
+            <h2>
+                professor(a) : {{item.member.name}}
+            </h2>
+        </ion-item>
+    </ion-list>
+</ion-content>

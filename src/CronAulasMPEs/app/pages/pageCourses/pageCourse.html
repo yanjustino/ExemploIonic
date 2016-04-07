@@ -1,0 +1,19 @@
+<ion-navbar *navbar>
+    <ion-title>
+        Disciplinas
+    </ion-title>
+</ion-navbar>
+
+<ion-content class="course">
+    <ion-list *ngFor="#course of teacher.courses">
+        <ion-list-header>
+            <h1>{{teacher.name}}</h1>
+            <ion-icon name="book"></ion-icon>
+            {{course.title}}
+        </ion-list-header>
+        <ion-item *ngFor="#date of course.dates">
+            <ion-icon name="calendar"></ion-icon>
+            {{date}}
+        </ion-item>
+    </ion-list>
+</ion-content>
