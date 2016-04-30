@@ -8,20 +8,15 @@ import {PageCourse} from '../pageCourses/pageCourse';
     providers: [MemberServices]
 })
 export class Page2 {
-    public students = [];
-    public teachers = [];
-
+    public students;
+    public teachers;
 
     constructor(private serv: MemberServices, private nav: NavController) {
-        this.students = serv.getStudents();
-        this.teachers = serv.getTeachers();
+        serv.getStudents().subscribe(data => this.students = data);
+        serv.getTeachers().subscribe(data => this.teachers = data);
     }
 
     gotToCoursePage(name: string) {
-        let professor = this.serv.getProfessor(name);
-        console.log(name);
-        this.nav.push(PageCourse, { member: professor });
+        this.nav.push(PageCourse, { member: name });
     }
-
-
 }

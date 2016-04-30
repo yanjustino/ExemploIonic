@@ -1,39 +1,43 @@
-import {Injectable} from 'angular2/core';
 import { Member, TipoMember } from '../domains/Member';
-import {Http, Response} from 'angular2/http';
 import { Contact } from '../domains/Contact';
-import { Data } from './data';
+import {Observable} from 'rxjs/Rx';
 
-@Injectable()
+import { Inject } from 'angular2/core';
+import { Http, Response } from 'angular2/http';
+import 'rxjs/add/operator/map';
+
 export class MemberServices {
-    constructor(private http: Http) { }
+    private http;
+
+    constructor( @Inject(Http) http: Http) {
+        this.http = http;
+    }
 
     getStudents() {
-        return Data.students
-            .map(d => new Member(d.name, TipoMember.Aluno, d.contact));
+        return this.http.get('http://127.0.0.1:1337/membros/alunos')
+            .map(res => res.json())
     }
 
     getTeachers() {
-        return Data.teachers
-            .map(d => new Member(d.name, TipoMember.Professor, d.contact, d.courses));
+        return this.http.get('http://127.0.0.1:1337/membros/professores')
+            .map(res => res.json())
+            
     }
 
-    getProfessor(name: string): Member {
-        let professor = null;
-        
-        this.getTeachers().forEach(element => {
-            if (element.name == name)
-                professor = element;
-        });
-        
-        return professor;
+    getAllCourses() {
+        let dis = []
+
+        this.getTeachers()
+            .subscribe(data => this.processCourses(data, dis));
+
+        return dis;
     }
     
-    getAllCourses(){
-        var dis = null
-        Data.teachers
-            .map(d => dis = d.courses.map(x => new Object({ "title": x.title, "member": d })));
-        return dis;    
+    private processCourses(data, out){
+        data.forEach(element => {
+            element.courses.forEach(course =>{
+                 out.push(new Object({ "title": course.title, "member": element }))
+            });
+        });        
     }
-    
 }

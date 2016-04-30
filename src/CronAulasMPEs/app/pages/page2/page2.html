@@ -7,11 +7,13 @@
 <ion-content class="page2">
     <ion-list>
         <ion-list-header>
+            <H3>
             Professores
+            </H3>
         </ion-list-header>
         <ion-item *ngFor="#item of teachers" (click)="gotToCoursePage(item.name)">
             <ion-avatar item-left>
-                <img src="build/img/user.png">
+                <img src="build/img/{{item.contact.image}}">
             </ion-avatar>
             <h2>{{item.name}}</h2>
             <h3>{{item.contact.phone}}</h3>
@@ -20,11 +22,13 @@
     </ion-list>
     <ion-list>
         <ion-list-header>
+            <H3>
             Alunos
+            </H3>        
         </ion-list-header>
         <ion-item *ngFor="#item of students">
             <ion-avatar item-left>
-                <img src="build/img/user.png">
+                <img src="build/img/{{item.contact.image}}">
             </ion-avatar>
             <h2>{{item.name}}</h2>
             <h3>{{item.contact.phone}}</h3>

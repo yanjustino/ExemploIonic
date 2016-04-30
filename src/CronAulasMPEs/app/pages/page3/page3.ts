@@ -16,8 +16,6 @@ export class Page3 {
     }
     
     gotToCoursePage(name: string) {
-        let professor = this.serv.getProfessor(name);
-        console.log(name);
-        this.nav.push(PageCourse, { member: professor });
+        this.nav.push(PageCourse, { member: name });
     }    
 }
